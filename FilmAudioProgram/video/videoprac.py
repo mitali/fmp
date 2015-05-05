@@ -1,6 +1,5 @@
 __author__ = 'Mitali'
 
-import numpy as np
 import cv2
 
 video_capture_object = cv2.VideoCapture(0)

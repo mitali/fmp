@@ -4,7 +4,6 @@ Created on May 2, 2015
 @author: Mitali
 '''
 
-# import numpy as np
 import cv2
 
 cap = cv2.VideoCapture('vtest.avi')
