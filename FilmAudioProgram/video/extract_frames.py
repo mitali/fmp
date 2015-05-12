@@ -6,14 +6,14 @@ Created on May 5, 2015
 
 import cv2
 
-vidcap = cv2.VideoCapture('videos/badeggs_pixar.avi')
-success, image = vidcap.read()
+vidcap = cv2.VideoCapture('videos/badeggs_pixar.mp4')
+success,image = vidcap.read()
 
 count = 0
 
 while success:
     
-    success, image = vidcap.read()
+    success,image = vidcap.read()
     cv2.imwrite("frames/frame%d.jpg" % count, image)
     
     if cv2.waitKey(10) == 27:
