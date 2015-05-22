@@ -9,10 +9,11 @@ To build, you require the following dependencies:
 
     - Python v2.7
     - OpenCV
-    - ffmpeg
+    - Ffmpeg
     - NumPy
     - MatPlotLib
     - Bash
+    - Nose (for testing)
 
 In order to remove audio from video file, execute following command:
 
