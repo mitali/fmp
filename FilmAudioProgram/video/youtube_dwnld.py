@@ -14,7 +14,7 @@ from pprint import pprint
 yt = YouTube()
 
 # Set the video URL.
-yt.url = "https://www.youtube.com/watch?v=Ik-RsDGPI5Y"
+yt.url = "https://youtu.be/Ik-RsDGPI5Y"
 
 pprint(yt.videos)
 
@@ -22,9 +22,8 @@ pprint(yt.videos)
 
 print(yt.filename)
 
-
 # set the filename:
-yt.filename = 'pf'
+yt.filename = 'pf2'
 
 # You can also filter the criteria by filetype.
 
@@ -33,9 +32,9 @@ pprint(yt.filter('flv'))
 print(yt.filter('mp4')[-1])
 
 # you can also get all videos for a given resolution
-pprint(yt.filter(resolution='480p'))
+pprint(yt.filter(resolution='240p'))
 
-video = yt.get('mp4', '480p')
+video = yt.get('mp4', '240p')
 
 pprint(yt.videos)
 
