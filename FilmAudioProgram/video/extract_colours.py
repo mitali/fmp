@@ -4,10 +4,12 @@ Created on May 29, 2015
 @author: Mitali
 '''
 
+# this works!
+
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture('videos/badeggs_pixar.mp4')
+cap = cv2.VideoCapture('videos/coyote.mp4')
 
 while(1):
     

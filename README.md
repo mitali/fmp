@@ -27,6 +27,14 @@ In order to extract a video file and save it in mp4 format, execute (e.g.):
 In order to crop a video file from minute 10.50 to 12.50
 
     ffmpeg -i mr_bean.mp4 -ss 00:10:50.00 -c copy -t 00:02:00.00 mr_bean_clip.mp4
+    
+In order to concatenate multiple mp3 files:
+
+    ffmpeg -i concat:"file1.mp3|file2.mp3|file3.mp3|..." -codec copy output.mp3
+    
+In order to convert .wav to .mp3
+
+    ffmpeg -i input.wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 output.mp3
 
 List of contributors:
 
