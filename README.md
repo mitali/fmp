@@ -23,6 +23,10 @@ In order to remove audio from video file, execute following command:
 In order to extract a video file and save it in mp4 format, execute (e.g.):
 
     youtube-dl -o videos/coyote.mp4 'https://youtu.be/b5cVYeeMzGI'
+    
+In order to crop a video file from minute 10.50 to 12.50
+
+    ffmpeg -i mr_bean.mp4 -ss 00:10:50.00 -c copy -t 00:02:00.00 mr_bean_clip.mp4
 
 List of contributors:
 
