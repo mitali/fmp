@@ -4,8 +4,7 @@ Created on May 27, 2015
 @author: Mitali
 '''
 
-import cv2
-import numpy as np
+import subprocess
 
 class program:
 
@@ -32,10 +31,12 @@ class program:
     
     # 6. function that determines length of a scene and stores it (using segmentation)
     def scene_length(self):
-        return;
+        i = 3
+        return i;
     
     # 7. function that loops soundtrack according to scene length (ffmpeg)
     def loop_by_length(self):
+        
         return;
     
     # 8. function that inserts looped soundtrack in scene + stores new video

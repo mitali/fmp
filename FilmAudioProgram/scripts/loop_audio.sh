@@ -19,7 +19,7 @@ sl = 10 # temporary
 loops = ($sl/$al) + 2
 
 # create temp file with list of repeated audio path
-for i in {1..$loops}; do echo "path"; done > list_tmp.txt
+for i in {1..$loops}; do echo -e "path\n"; done > list_tmp.txt
 
 # ffmpeg command to concat list
 ffmpeg -t $sl -f concat -i list_tmp.txt -c copy -t $sl output.mp3

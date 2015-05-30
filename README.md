@@ -16,6 +16,9 @@ To build, you require the following dependencies:
     - Nose (for testing)
     - Youtube-dl (for extracting YouTube videos)
 
+In order to extract and return audio from video file:
+ffmpeg -i filename.mp4 filename.mp3
+
 In order to remove audio from video file, execute following command:
 
     ffmpeg -i input.flv -an -vcodec copy output.flv
