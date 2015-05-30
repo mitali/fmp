@@ -35,6 +35,10 @@ In order to concatenate multiple mp3 files:
 In order to convert .wav to .mp3
 
     ffmpeg -i input.wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 output.mp3
+    
+In order to add audio to a video
+
+    ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:0 -map 1:0 output.mp4
 
 List of contributors:
 
