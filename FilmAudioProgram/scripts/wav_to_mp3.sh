@@ -24,5 +24,7 @@ if [ ! -f "$dir_head/$rand_filename.mp3" ];
 
 fi
 
+#rm $rand_filename.wav
+
 # wait 10 secs for any errors on terminal
 sleep 10
