@@ -9,7 +9,7 @@ Created on May 29, 2015
 import cv2
 import numpy as np
 
-cap = cv2.VideoCapture('videos/coyote.mp4')
+cap = cv2.VideoCapture('videos/car.mp4')
 
 while(1):
     
