@@ -4,87 +4,34 @@ Created on Jun 3, 2015
 @author: Mitali
 '''
 
-from scipy.spatial import distance as dist
-import matplotlib.pyplot as plt
-import numpy as np
-import argparse
-import glob
 import cv2
- 
-# construct the argument parser and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dataset", required = True,
-    help = "Path to the directory of images")
-args = vars(ap.parse_args())
- 
-# initialize the index dictionary to store the image name
-# and corresponding histograms and the images dictionary
-# to store the images themselves
-index = {}
-images = {}
+import numpy as np
 
-# loop over the image paths
-for imagePath in glob.glob(args["dataset"] + "/*.png"):
-    # extract the image filename (assumed to be unique) and
-    # load the image, updating the images dictionary
-    filename = imagePath[imagePath.rfind("/") + 1:]
-    image = cv2.imread(imagePath)
-    images[filename] = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
- 
-    # extract a 3D RGB color histogram from the image,
-    # using 8 bins per channel, normalize, and update
-    # the index
-    hist = cv2.calcHist([image], [0, 1, 2], None, [8, 8, 8],
-        [0, 256, 0, 256, 0, 256])
-    hist = cv2.normalize(hist).flatten()
-    index[filename] = hist
+# read 2 images and convert to HSV
+img1 = cv2.imread('frames/frame300.jpg')
+img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2HSV)
+img2 = cv2.imread('frames/frame392.jpg')
+img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2HSV)
+
+h = np.zeros((300,256,3))
+
+bins = np.arange(256).reshape(256,1)
+color = [(255,0,0),(0,255,0),(0,0,255)]
+
+for ch, col in enumerate(color):
+    hist_item1 = cv2.calcHist([img1],[ch],None,[256],[0,255])
+    hist_item2 = cv2.calcHist([img2],[ch],None,[256],[0,255])
     
-# METHOD #1: UTILIZING OPENCV
-# initialize OpenCV methods for histogram comparison
-OPENCV_METHODS = (
-    ("Correlation", cv2.cv.CV_COMP_CORREL),
-    ("Chi-Squared", cv2.cv.CV_COMP_CHISQR),
-    ("Intersection", cv2.cv.CV_COMP_INTERSECT), 
-    ("Hellinger", cv2.cv.CV_COMP_BHATTACHARYYA))
- 
-# loop over the comparison methods
-for (methodName, method) in OPENCV_METHODS:
-    # initialize the results dictionary and the sort
-    # direction
-    results = {}
-    reverse = False
- 
-    # if we are using the correlation or intersection
-    # method, then sort the results in reverse order
-    if methodName in ("Correlation", "Intersection"):
-        reverse = True
-        
-    for (k, hist) in index.items():
-        # compute the distance between the two histograms
-        # using the method and update the results dictionary
-        d = cv2.compareHist(index["doge.png"], hist, method)
-        results[k] = d
- 
-    # sort the results
-    results = sorted([(v, k) for (k, v) in results.items()], reverse = reverse)
+    cv2.normalize(hist_item1,hist_item1,0,255,cv2.NORM_MINMAX)
+    cv2.normalize(hist_item2,hist_item2,0,255,cv2.NORM_MINMAX)
     
-    # show the query image
-    fig = plt.figure("Query")
-    ax = fig.add_subplot(1, 1, 1)
-    ax.imshow(images["doge.png"])
-    plt.axis("off")
- 
-    # initialize the results figure
-    fig = plt.figure("Results: %s" % (methodName))
-    fig.suptitle(methodName, fontsize = 20)
- 
-    # loop over the results
-    for (i, (v, k)) in enumerate(results):
-        # show the result
-        ax = fig.add_subplot(1, len(images), i + 1)
-        ax.set_title("%s: %.2f" % (k, v))
-        plt.imshow(images[k])
-        plt.axis("off")
- 
-# show the OpenCV methods
-plt.show()
+    sc = cv2.compareHist(hist_item1,hist_item2, cv2.cv.CV_COMP_CORREL)
+    
+    print sc
+    
+    hist = np.int32(np.around(hist_item1))
+    pts = np.column_stack((bins,hist))
+    cv2.polylines(h,[pts],False,col)
+    
+h = np.flipud(h)
+cv2.imwrite('my_histogram.png', h)
