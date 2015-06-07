@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<iri>
+<frame>
+<!-- m=movement, r/g/b=RGB values, s=saturation -->
+<v m="4" r="255" g="255" b="0" s="12" />
+<v m="1" r="238" g="255" b="0" s="12" />
+<v m="5" r="255" g="255" b="0" s="13" />
+<v m="14" r="255" g="201" b="0" s="15" />
+</frame>
+</iri>
