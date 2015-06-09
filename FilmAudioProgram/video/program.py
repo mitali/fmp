@@ -4,83 +4,69 @@ Created on May 27, 2015
 @author: Mitali
 '''
 
-import argparse
-import subprocess
-import os
-import sys
-
 from processing.extract_frames import breakdown
+from processing.save_shot import save_shot_details
+from processing.bash_script import call_bash_script
 
-scripts_dir = '/Users/Mitali/Desktop/IndividualProject/fmp/FilmAudioProgram/scripts/'
+### ----------------- WRAPPERS TO BE USED IN MAIN -------------------
 
-# function that removes audio from video
-def strip_audio(video):
-    directory = scripts_dir + "strip_audio_specific.sh"
-    os.chmod(directory, 0o755)
-    command = directory + " " + video
-    subprocess.Popen([command], shell=True, executable="/bin/bash")
-    return;
+# removes audio from video
+def strip_audio(video):   
+    call_bash_script(video, "strip_audio_specific.sh")
+    return
 
-# function that takes a video and breaks it down into frames - TODO: fix
+# takes a video and breaks it down into frames - TODO: fix
 def breakdown_video(video):
     breakdown(video)
-    return;
+    return
 
-# function that takes a video and breaks it into shots
+# takes a video and breaks it into shots
 def shot_breakdown(video):
-    directory = scripts_dir + "shot_detect.sh"
-    os.chmod(directory, 0o755)
-    command = directory + " " + video
-    #subprocess.Popen([command], shell=True, executable="/bin/bash")
-    subprocess.call(command, shell=True)
-    return;
+    call_bash_script(video, "shot_detect.sh")
+    return
+
+# saves shot details in 3d array & calculates length per shot saved
+# in another array
+def save_shots(video):
+    save_shot_details(video)
+    return
     
-# function that loops over frames and segments them/plots histograms 
-def segment(self):
-    return;
+# loops over frames and plots histograms 
+def plot_histogram(self):
+    return
+
+# takes 2 histograms and compares them
+def compare_histograms(self):
+    return
+
+# determines most dominant colours using k means - machine learning
+def colour_distribution(self):
+    return
     
-# function that determines most dominant colour in frame, 2nd most 
-#     and 3rd most dominant (e.g. green, blue, red)
+# determines most dominant colour in frame, 2nd most and 3rd most dominant 
+# (e.g. green, blue, red)
 def dominant_colours(self):
-    return;
+    return
     
-# function that takes dominant colour and assigns mood category to frame
+# takes dominant colour and assigns mood category to frame
 def scene_mood(self):
-    return;
+    return
     
-# function that takes mood and chooses soundtrack
+# takes mood and chooses soundtrack
 def choose_audio(self):
     return;
     
-# function that determines length of a scene and stores it (using segmentation)
-def scene_length(self):
-    i = 3
-    return i;
-    
-# function that loops soundtrack according to scene length (ffmpeg)
+# loops soundtrack according to scene length
 def loop_by_length(self):    
-    return;
+    return
     
-# function that inserts looped soundtrack in scene + stores new video
+# inserts looped soundtrack in scene + stores new video
 def insert_audio(self):
-    return;
+    return
     
-# function that outputs final video
+# outputs final video
 def output(self):
-    return;
+    return
+
+### ---------------------------------------------------------------
     
-#################################################################
-
-# get path to video from argument parser
-ap = argparse.ArgumentParser()
-ap.add_argument("-v", "--video", help = "Input path to the video")
-args = vars(ap.parse_args())
-input_video = args["video"]
-
-# remove audio from input file
-#strip_audio(input_video)
-
-# break video file down into frames
-shot_breakdown(input_video)
-
-sys.exit(0)

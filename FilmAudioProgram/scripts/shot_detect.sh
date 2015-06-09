@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # script that breaks a video into shots and returns an xml with details
-# furthermore it retains details and writes them to a txt file
+# it also retains details and writes them to a txt file
 
 # takes just name of file as input (no .mp4 or full directory)
 
@@ -25,8 +25,6 @@ do
   echo $sig >> shots_file.txt
 
 done
-
-echo "left loop"
 
 
 
