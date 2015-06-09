@@ -25,8 +25,7 @@ def shot_breakdown(video):
     call_bash_script(video, "shot_detect.sh")
     return
 
-# saves shot details in 3d array & calculates length per shot saved
-# in another array
+# saves shot details in array & calculates length per shot saved in diff array
 def save_shots(video):
     save_shot_details(video)
     return
