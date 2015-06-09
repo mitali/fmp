@@ -7,6 +7,7 @@ Created on May 27, 2015
 import argparse
 import subprocess
 import os
+import sys
 
 from processing.extract_frames import breakdown
 
@@ -27,6 +28,11 @@ def breakdown_video(video):
 
 # function that takes a video and breaks it into shots
 def shot_breakdown(video):
+    directory = scripts_dir + "shot_detect.sh"
+    os.chmod(directory, 0o755)
+    command = directory + " " + video
+    #subprocess.Popen([command], shell=True, executable="/bin/bash")
+    subprocess.call(command, shell=True)
     return;
     
 # function that loops over frames and segments them/plots histograms 
@@ -72,8 +78,9 @@ args = vars(ap.parse_args())
 input_video = args["video"]
 
 # remove audio from input file
-strip_audio(input_video)
+#strip_audio(input_video)
 
 # break video file down into frames
 shot_breakdown(input_video)
 
+sys.exit(0)
