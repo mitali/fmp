@@ -34,7 +34,7 @@ al_init=$(cat audio_len_tmp.txt)
 al=$(printf "%.0f" $al_init) 
 
 # sl = assume/get length of scene in seconds - TODO: Add scene functionality
-sl=25 # temporary
+sl=111 # temporary
 
 # determine number of loops required by
 # loops = sl/al + 2 (2 extra in case. 1 might be required anyway)

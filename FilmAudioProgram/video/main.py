@@ -20,6 +20,9 @@ input_video = args["video"]
 program.strip_audio(input_video)
 
 # break video file down into frames
-program.shot_breakdown(input_video)
+#program.shot_breakdown(input_video)
+
+# tmp call
+program.tmp(input_video)
 
 sys.exit(0)

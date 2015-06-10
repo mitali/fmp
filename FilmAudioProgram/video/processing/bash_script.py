@@ -22,3 +22,16 @@ def call_bash_script(video, script_name):
     subprocess.call(command, shell=True)
     
     return
+
+def call_bash_script_2_args(genre, video, script_name):
+    
+    scripts_dir = '/Users/Mitali/Desktop/IndividualProject/fmp/FilmAudioProgram/scripts/'
+    
+    directory = scripts_dir + script_name
+    os.chmod(directory, 0o755)
+    command = directory + " " + genre + " " + video
+    
+    #subprocess.Popen([command], shell=True, executable="/bin/bash")
+    subprocess.call(command, shell=True)
+    
+    return
