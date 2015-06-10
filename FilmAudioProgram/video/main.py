@@ -6,7 +6,7 @@ Created on Jun 9, 2015
 
 import argparse
 import sys
-import program
+import procedures
 
 ### -------------------------  MAIN PROGRAM -------------------------
 
@@ -17,12 +17,12 @@ args = vars(ap.parse_args())
 input_video = args["video"]
 
 # remove audio from input file
-program.strip_audio(input_video)
+procedures.strip_audio(input_video)
 
 # break video file down into frames
 #program.shot_breakdown(input_video)
 
 # tmp call
-program.tmp(input_video)
+procedures.tmp(input_video)
 
 sys.exit(0)

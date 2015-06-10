@@ -8,9 +8,9 @@ import cv2
 import numpy as np
 
 # read 2 images and convert to HSV
-img1 = cv2.imread('frames/frame300.jpg')
+img1 = cv2.imread('frames/frame310.jpg')
 img1 = cv2.cvtColor(img1,cv2.COLOR_BGR2HSV)
-img2 = cv2.imread('frames/frame392.jpg')
+img2 = cv2.imread('frames/frame390.jpg')
 img2 = cv2.cvtColor(img2,cv2.COLOR_BGR2HSV)
 
 h = np.zeros((300,256,3))

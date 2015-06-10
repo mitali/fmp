@@ -24,5 +24,7 @@ echo $rand_filename
 #ffmpeg -i $video_dir$2.mp4 -i $rand_filename.mp3 -c copy -map 0:0 -map 1:0 $2_processed.mp4
 ffmpeg -i $video_dir/$2_silent.mp4 -i $rand_filename.mp3 -c copy -map 0:0 -map 1:0 $video_dir/$2_processed.mp4
 
+rm $video_dir/$2_silent.mp4
+
 # wait 10 secs for any errors on terminal
 #sleep 10
