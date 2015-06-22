@@ -38,7 +38,11 @@ clt.fit(image)
 # representing the number of pixels labeled to each color
 hist = utils.centroid_histogram(clt)
 bar = utils.plot_colors(hist, clt.cluster_centers_)
+#percentages = utils.get_colors(hist, clt.cluster_centers_)
  
+ 
+#print percentages
+
 # show our color bart
 plt.figure()
 plt.axis("off")

@@ -16,8 +16,6 @@ rand_filename=$(find . -iname "*.mp3" -print | gshuf -n 1)
 rand_filename=${rand_filename:2} # strip first 2 characters ./
 rand_filename=${rand_filename%%.*} # parse name out to remove suffix
 
-
-echo "Hello"
 echo $rand_filename
 
 # merge pre-looped audio with video file

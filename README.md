@@ -15,37 +15,24 @@ To build, you require the following dependencies:
     - Bash
     - Nose (for testing)
     - Youtube-dl (for extracting YouTube videos)
-
-In order to extract and return audio from video file:
-ffmpeg -i filename.mp4 filename.mp3
-
-In order to remove audio from video file, execute following command:
-
-    ffmpeg -i input.flv -an -vcodec copy output.flv
     
-In order to extract a video file and save it in mp4 format, execute (e.g.):
+To run program:
 
-    youtube-dl -o videos/coyote.mp4 'https://youtu.be/b5cVYeeMzGI'
+    cd fmp/FilmAudioProgram/video
     
-In order to crop a video file from minute 10.50 to 12.50
-
-    ffmpeg -i mr_bean.mp4 -ss 00:10:50.00 -c copy -t 00:02:00.00 mr_bean_clip.mp4
+    python main.py -v input.mp4 
     
-In order to concatenate multiple mp3 files:
-
-    ffmpeg -i concat:"file1.mp3|file2.mp3|file3.mp3|..." -codec copy output.mp3
+    OR
     
-In order to convert .wav to .mp3
-
-    ffmpeg -i input.wav -vn -ar 44100 -ac 2 -ab 192k -f mp3 output.mp3
+    python main.py -y http://www.youtube.com/My_URL
     
-In order to add audio to a video
+Bulk of code is in fmp/FilmAudioProgram/video/processing
 
-    ffmpeg -i input.mp4 -i input.mp3 -c copy -map 0:0 -map 1:0 output.mp4
+Sound bank and themes can be found in fmp/FilmAudioProgram/audio/bank
+
 
 List of contributors:
 
     - Mitali Dargani
-
 
 

@@ -11,7 +11,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 
 #392
-img = cv2.imread('frames/frame392.jpg', -1)
+img = cv2.imread('../frames/frame390.jpg', -1)
 cv2.imshow('cartriges', img)
 
 color = ('b', 'g', 'r')

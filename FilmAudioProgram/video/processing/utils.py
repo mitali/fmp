@@ -7,6 +7,7 @@ Created on Jun 6, 2015
 # import the necessary packages
 import numpy as np
 import cv2
+#from lib2to3.pgen2.token import PERCENT
  
 def centroid_histogram(clt):
     # grab the number of different clusters and create a histogram
@@ -38,5 +39,24 @@ def plot_colors(hist, centroids):
     
     # return the bar chart
     return bar
+
+#===============================================================================
+# def get_colors(hist, centroids):
+#  
+#     # initialise array of percentages
+#     percentages=[]
+#     
+#     i=0
+#     
+#     # loop over the percentage of each cluster and the color of
+#     # each cluster
+#     for (percent, color) in zip(hist, centroids):
+#         percentages.append(percent)
+#         print percent
+#         print color 
+#     
+#     # return array
+#     return percentages
+#===============================================================================
 
 

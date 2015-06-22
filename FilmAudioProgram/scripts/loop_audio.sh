@@ -10,6 +10,10 @@ dir_head='/Users/Mitali/Desktop/IndividualProject/fmp/FilmAudioProgram/video/vid
 audio_dir='/Users/Mitali/Desktop/IndividualProject/fmp/FilmAudioProgram/audio/bank'
 loop_dir=$audio_dir/$1/looped
 
+if [[ ! -e $loop_dir ]]; then
+            mkdir $loop_dir
+fi
+
 echo $loop_dir
 
 cd $audio_dir/$1
@@ -23,18 +27,23 @@ echo $rand_filename
 
 #echo $audio_dir/$1/$rand_filename.mp3
 
-# extract line with length of audio clip
+# extract line with length of audio clip and length of video clip
 #ffmpeg -i 'path/to/original.mp3' 2>&1 | grep 'Duration:' > audio_len_tmp.txt
 ffprobe -i $audio_dir/$1/$rand_filename.mp3 -show_entries format=duration -v quiet -of csv="p=0" > audio_len_tmp.txt
+ffprobe -i $dir_head/$2.mp4 -show_format -v quiet | sed -n 's/duration=//p' > video_len_tmp.txt
 
 # al = parsed length of audio clip from temp file
 # typeset -i before cat
 al_init=$(cat audio_len_tmp.txt)
-
 al=$(printf "%.0f" $al_init) 
 
-# sl = assume/get length of scene in seconds - TODO: Add scene functionality
-sl=111 # temporary
+sl_init=$(cat video_len_tmp.txt)
+sl=$(printf "%.0f" $sl_init) 
+
+echo "sl value is: $sl"
+
+# sl = assume/get length of scene in seconds
+#sl=111 # temporary
 
 # determine number of loops required by
 # loops = sl/al + 2 (2 extra in case. 1 might be required anyway)
@@ -57,6 +66,7 @@ ffmpeg -t $sl -f concat -i list_tmp.txt -c copy -t $sl $loop_dir/${rand_filename
 
 # delete temp files
 rm audio_len_tmp.txt
+rm video_len_tmp.txt
 rm list_tmp.txt
 
 # wait 10 secs for any errors on terminal

@@ -13,6 +13,9 @@ from processing.bash_script import call_bash_script_2_args
 
 ### ----------------- WRAPPERS TO BE USED IN MAIN -------------------
 
+def youtube_convert(video):
+    call_bash_script(video, "youtube_to_mp4.sh")
+
 # removes audio from video
 def strip_audio(video):   
     call_bash_script(video, "strip_audio_specific.sh")
